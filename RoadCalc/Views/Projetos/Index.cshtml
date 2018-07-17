@@ -1,0 +1,86 @@
+﻿@model IEnumerable<RoadCalc.Models.ViewModels.ListProjetoViewModel>
+
+@{
+    ViewBag.Title = "Meus projetos";
+}
+
+<hr />
+<p>
+    <a class="btn btn-app" href="@Url.Action("Create")">
+        <i class="fa fa-plus"></i> Novo Projeto
+    </a>
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@item.Nome</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                    <p>Responsável pelo projeto: @item.NomeResponsavel </p>
+                    <p>Classe do Projeto: @item.ClasseDeProjeto.NomeCompleto() </p>
+                    <p>Número de Pontos: @item.NumeroDePontos </p>
+                    <p>Número de Trechos: @item.NumeroDeTrechos </p>
+                    <p>Número de Curvas: @item.NumeroDeCurvas </p>
+                    <p>Coordenadas no Padrão UTM: @item.CoordenadasReais </p>
+                    
+                    <p>
+                        @if (item.MapaRenderizado)
+                        {
+                            <a class="btn btn-app">
+                                <i class="fa fa-map"></i> Mapa
+                            </a>
+                        }
+                        <a class="btn btn-app" href="@Url.Action("Edit", "Projetos", new {id = item.Id})">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                        <a class="btn btn-app" href="@Url.Action("Delete", "Projetos", new {id = item.Id})">
+                            <i class="fa fa-trash"></i> Deletar
+                        </a>
+                    </p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+
+    @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClasseDeProjeto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIncluded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAltered)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>*@
+}
+
+
+
+</table>

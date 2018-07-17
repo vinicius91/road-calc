@@ -1,0 +1,50 @@
+﻿@model RoadCalc.Models.ViewModels.DistDecimal
+<hr/>
+<p>
+    <b>Azimute entre dois pontos - Decimal</b>
+</p>
+<hr/>
+<!--INICIO DO FORMULÁRIO-->
+@using (Ajax.BeginForm("CalculaAzimuteDecimal", new AjaxOptions { UpdateTargetId = "CalculaAzimuteDecimal", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="box-body">
+        <div class="row">
+            <h4>Ponto 1</h4>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordXPt1)
+                @Html.TextBoxFor(x => x.CoordXPt1, new {@class = "form-control", type = "number", step = 0.01})
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordYPt1)
+                @Html.TextBoxFor(x => x.CoordYPt1, new { @class = "form-control", type = "number", step = 0.01 })
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <h4>Ponto 2</h4>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordXPt2)
+                @Html.TextBoxFor(x => x.CoordXPt2, new { @class = "form-control", type = "number", step = 0.01 })
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordYPt2)
+                @Html.TextBoxFor(x => x.CoordYPt2, new { @class = "form-control", type = "number", step = 0.01 })
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <button type="submit" class="btn btn-primary form-control">Calcular</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+
+}
+<!--TÉRMINO DO FORMULÁRIO-->
+<div class="box-footer">
+    <div id="CalculaAzimuteDecimal">
+        
+    </div>
+</div>

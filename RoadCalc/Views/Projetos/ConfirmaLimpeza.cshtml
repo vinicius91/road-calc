@@ -1,0 +1,31 @@
+﻿@model RoadCalc.Models.ViewModels.EditProjetoViewModel
+
+
+<div class="modal-dialog">
+    @using (Html.BeginForm("LimpaProjeto", "Projetos", FormMethod.Post))
+    {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Limpeza de Projeto</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-horizontal" style="margin-left: 10px">
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.HiddenFor(x => x.PontoInicialId)
+                    <p>Todos as curvas e trechos do projeto serão removidos.</p>
+                    <p>Clique no botão abaixo para confirmar.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success pull-right">Confirmar</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    }
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+

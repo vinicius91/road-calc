@@ -1,0 +1,69 @@
+﻿@model IEnumerable<RoadCalc.Models.Entities.Trecho>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Projeto.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inclinacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Azimute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Projeto.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distancia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inclinacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Azimute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateIncluded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAltered)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

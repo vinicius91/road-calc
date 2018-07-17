@@ -1,0 +1,18 @@
+﻿version: '3.3'
+
+services:
+  mysql:
+    container_name: roadcalc_mysql
+    restart: always
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: roadcalc
+      MYSQL_DATABASE: roadcalc
+      MYSQL_USER: roadcalc
+      MYSQL_PASSWORD: roadcalc
+    ports: 
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:

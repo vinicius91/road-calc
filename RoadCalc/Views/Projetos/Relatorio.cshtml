@@ -1,0 +1,429 @@
+﻿@using System.Web.Optimization
+@model RoadCalc.Models.ViewModels.RelatorioProjetoViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        Relatório de @Model.Nome
+    </title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/icheck/blue.min.css" rel="stylesheet">
+    @Styles.Render("~/Bundles/css")
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue">
+    <section class="content">
+        <div class="header">
+            <h2>
+                @Model.Nome
+                <small>Relatório Completo</small>
+            </h2>
+            <hr />
+        </div>
+
+        <div class="col-md-12 col-lg-6 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Dados Gerais</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th style="width:50%">Classe de Projeto:</th>
+                                    <td>@Model.ClasseDeProjeto.Nome</td>
+                                </tr>
+                                <tr>
+                                    <th>Características:</th>
+                                    <td>@Model.ClasseDeProjeto.Caracteristicas</td>
+                                </tr>
+                                <tr>
+                                    <th>Critério de Classificação Técnica:</th>
+                                    <td>@Model.ClasseDeProjeto.CritClassTecnica</td>
+                                </tr>
+                                <tr>
+                                    <th>Velocidade Diretriza:</th>
+                                    <td>@Model.ClasseDeProjeto.VelDirMin</td>
+                                </tr>
+                                <tr>
+                                    <th>Raio mínimo de curva horizontal para superelevação máxima:</th>
+                                    <td>@Model.ClasseDeProjeto.RaioMinSupEleMax</td>
+                                </tr>
+                                <tr>
+                                    <th>Taxa de Superelevação máxima:</th>
+                                    <td>@Model.ClasseDeProjeto.SupEleMax %</td>
+                                </tr>
+                                <tr>
+                                    <th>Rampa máxima:</th>
+                                    <td>@Model.ClasseDeProjeto.RampaMax %</td>
+                                </tr>
+                                <tr>
+                                    <th>Largura das Faixas de Trânsito:</th>
+                                    <td>@Model.ClasseDeProjeto.LargFxTrans metros</td>
+                                </tr>
+                                <tr>
+                                    <th>Largura de acostamento externo:</th>
+                                    <td>Mínimo desejável: @Model.ClasseDeProjeto.LargAcoExtD metros | Mínimo absoluto: @Model.ClasseDeProjeto.LargAcoExtA metros </td>
+                                </tr>
+                                @if (Model.Nome == "0" || Model.Nome == "I-A")
+                            {
+                                <tr>
+                                    <th>Largura de acostamento interno:</th>
+                                    <td>
+                                        Pista de 2 faixas: @Model.ClasseDeProjeto.LargAcoIntDuasFxMin - @Model.ClasseDeProjeto.LargAcoIntDuasFxMax m | Pista de 3 faixas: @Model.ClasseDeProjeto.LargAcoIntTresFxMin - @Model.ClasseDeProjeto.LargAcoIntTresFxMax m | Pista de 4 faixas: @Model.ClasseDeProjeto.LargAcoIntQuatroFxMin - @Model.ClasseDeProjeto.LargAcoIntQuatroFxMax m
+                                    </td>
+                                </tr>
+                        }
+                                <tr>
+                                    <th>Gabarito Vertical:</th>
+                                    <td>
+                                        @if (Model.Nome == "0" || Model.Nome == "I-A" || Model.Nome == "I-B")
+                                    {
+                                        @Model.ClasseDeProjeto.GabVertA @:metros
+                                }
+                                else
+                                {
+                                    @:Mínimo desejável: @Model.ClasseDeProjeto.GabVertD metros | Mínimo absoluto: @Model.ClasseDeProjeto.GabVertA metros
+                            }
+
+                                    </td>
+                                </tr>
+                                @if (Model.Nome == "0" || Model.Nome == "I-A" || Model.Nome == "I-B")
+                            {
+                                <tr>
+                                    <th>Largura do Canteiro Central:</th>
+                                    <td>
+                                        Largura desejável: @Model.ClasseDeProjeto.LargCantCentDMin - @Model.ClasseDeProjeto.LargCantCentDMax m | Valor Normal: @Model.ClasseDeProjeto.LargCantCentNMin - @Model.ClasseDeProjeto.LargCantCentNMax m | Mínimo Absoluto: @Model.ClasseDeProjeto.LargCantCentAMin - @Model.ClasseDeProjeto.LargCantCentAMax m
+                                    </td>
+                                </tr>
+                        }
+                                <tr>
+                                    <th>Afastamento mínimo da borda do acostamento :</th>
+                                    <td>Objetos contínuos: @Model.ClasseDeProjeto.AfastMinBordAcoObC metros | Objetos isolados: @Model.ClasseDeProjeto.AfastMinBordAcoObI metros</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Pontos Notáveis</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Easting (UTM)</th>
+                                <th>Northing (UTM)</th>
+                                <th>Zona</th>
+                                <th>Elevação</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                            @foreach (var item in Model.PontoNotaveis)
+                        {
+                            <tr>
+                                <td>@item.Nome</td>
+                                <td>@item.Coordenada.X.ToString("F2")</td>
+                                <td>@item.Coordenada.Y.ToString("F2")</td>
+                                <td>@item.Coordenada.ZoneLetter-@item.Coordenada.ZoneNumber </td>
+                                <td>@item.Coordenada.Z.ToString("F2") metros</td>
+                                <td>@item.Coordenada.Lat.ToString("F6") °</td>
+                                <td>@item.Coordenada.Lng.ToString("F6") °</td>
+                            </tr>
+                    }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Trechos</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Estaca Inicial</th>
+                                <th>Estaca Final</th>
+                                <th>Distância</th>
+                                <th>Inclinação</th>
+                                <th>Azimute</th>
+                            </tr>
+                            @foreach (var item in Model.Trechos)
+                        {
+                            <tr>
+                                <td>@item.Nome</td>
+                                <td>@item.EstacaInicial.NomeCompleto()</td>
+                                <td>@item.EstacaFinal.NomeCompleto()</td>
+                                <td>@item.Distancia.ToString("F2") metros</td>
+                                <td>
+                                    @if ((item.Inclinacao * 100) > Model.ClasseDeProjeto.RampaMax)
+                                {
+                                    <span class="text-danger">@((item.Inclinacao * 100).ToString("F2")) %</span>
+                            }
+                            else
+                            {
+                                <span class="text-success">@((item.Inclinacao * 100).ToString("F2")) %</span>
+                        }
+                                </td>
+                                <td>@item.Azimute.ToString("F2") radianos</td>
+                            </tr>
+                    }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+        
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Curvas Horizontais</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle">Nome</th>
+                                <th style="text-align: center; vertical-align: middle">Raio</th>
+                                <th style="text-align: center; vertical-align: middle">Superelevação</th>
+                                <th style="text-align: center; vertical-align: middle">Deflexão</th>
+                                <th style="text-align: center; vertical-align: middle">Ângulo Central</th>
+                                <th style="text-align: center; vertical-align: middle">Grau de Curva</th>
+                                <th style="text-align: center; vertical-align: middle">Corda</th>
+                                <th style="text-align: center; vertical-align: middle">Desenvolvimento</th>
+                                <th style="text-align: center; vertical-align: middle">Possui Transição?</th>
+
+                            </tr>
+                            @foreach (var item in Model.Curvas)
+                        {
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle">@item.Nome</td>
+                                <td style="text-align: center; vertical-align: middle">@item.Raio metros</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.SuperElevacao * 100).ToString("F2")) %</td>
+                                <td style="text-align: center; vertical-align: middle">@item.Deflexao.ToString("F2") radianos</td>
+                                <td style="text-align: center; vertical-align: middle">@item.AnguloCentral.ToString("F2") radianos</td>
+                                <td style="text-align: center; vertical-align: middle">@item.GrauDeCurva.ToString("F2") radianos</td>
+                                <td style="text-align: center; vertical-align: middle">@item.Corda.ToString("F2") metros</td>
+                                <td style="text-align: center; vertical-align: middle">@item.Desenvolvimento.ToString("F2") metros</td>
+                                <td style="text-align: center; vertical-align: middle">@(item.Transicao ? "Sim" : "Não")</td>
+
+                            </tr>
+                    }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Curvas Verticais</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th style="width: 10%; text-align: center; vertical-align: middle">Nome</th>
+                                <th style="text-align: center; vertical-align: middle">Tipo</th>
+                                <th style="text-align: center; vertical-align: middle">Parâmetro de Curvatura da Parábola - K (m/%)</th>
+                                <th style="text-align: center; vertical-align: middle">Diferença Algébrica entre as declividades - A (%)</th>
+                                <th style="text-align: center; vertical-align: middle">Comprimento da Parábola - L (m)</th>
+                                <th style="text-align: center; vertical-align: middle">Inclinação Inicial (%)</th>
+                                <th style="text-align: center; vertical-align: middle">Inclinação Final (%)</th>
+                                <th style="text-align: center; vertical-align: middle">Ordenada Máxima da Parábola - Omax (m)</th>
+                                <th style="width: 10%; text-align: center; vertical-align: middle">Estaca PCV</th>
+                                <th style="width: 10%; text-align: center; vertical-align: middle">Estaca PIV</th>
+                                <th style="width: 10%; text-align: center; vertical-align: middle">Estaca PTV</th>
+                            </tr>
+                            @foreach (var item in ViewBag.curvasVerticais)
+                        {
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle">@item.Nome</td>
+                                <td style="text-align: center; vertical-align: middle">@item.TipoVertical</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.K).ToString("F4"))</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.A).ToString("F2"))</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.L).ToString("F2"))</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.IInicial).ToString("F2"))</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.IFinal).ToString("F2"))</td>
+                                <td style="text-align: center; vertical-align: middle">@((item.OMax).ToString("F4"))</td>
+                                <td style="text-align: center; vertical-align: middle">@item.EstacaPCV.NomeCompleto()</td>
+                                <td style="text-align: center; vertical-align: middle">@item.EstacaPIV.NomeCompleto()</td>
+                                <td style="text-align: center; vertical-align: middle">@item.EstacaPTV.NomeCompleto()</td>
+                            </tr>
+                    }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Estacas</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-responsive table-hover table-striped">
+                    <tr>
+                        <th>Numero</th>
+                        <th>Intermediario</th>
+                        <th>Easting</th>
+                        <th>Northing</th>
+                        <th>Elevação</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Cota Vermelha</th>
+                    </tr>
+                    @foreach (var item in Model.Estacas)
+                    {
+                        <tr>
+                            <td>@item.Numero</td>
+                            <td>@item.Intermediario</td>
+                            <td>@item.Coordenada.X.ToString("F2")</td>
+                            <td>@item.Coordenada.Y.ToString("F2")</td>
+                            <td>@item.Coordenada.Z.ToString("F2")</td>
+                            <td>@item.Coordenada.Lat.ToString("F8")</td>
+                            <td>@item.Coordenada.Lng.ToString("F8")</td>
+                            <td>@item.CotaVermelha.ToString("F8")</td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Greide</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Mapa</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <iframe src=@Url.Action("Mapa", new {id = @Model.Id}) id='frame' style="width: 100%; height: 700px"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
+    @Scripts.Render("~/Bundles/js")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+
+    Highcharts.chart('container',
+        {
+            chart: {
+                type: 'areaspline'
+            },
+            title: {
+                text: 'Greide'
+            },
+            subtitle: {
+                text: 'Elevação concordada X Terreno Natural'
+            },
+            xAxis: {
+                categories: @Html.Raw(ViewBag.nomes)
+            },
+            yAxis: {
+                title: {
+                    text: 'Elevação'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value.toFixed(2) + ' metros';
+                    }
+                }
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true,
+                formatter: function () {
+                    var s = '<b>' + this.x + '</b>';
+
+                    $.each(this.points, function () {
+                        s += '<br/>' + this.series.name + ': ' +
+                            parseFloat(this.y).toPrecision(4) + ' metros';
+                    });
+
+                    return s;
+                }
+            },
+            plotOptions: {
+                areaspline: {
+                    fillOpacity: 0.5
+                }
+            },
+            series: [
+                {
+                    name: 'Cota Natural',
+                    data: @Html.Raw(ViewBag.cotasNaturais)
+
+                },
+                {
+                    name: 'Cota Vermelha',
+                    data: @Html.Raw(ViewBag.cotas)
+
+                }]
+        });
+    </script>
+</body>
+</html>

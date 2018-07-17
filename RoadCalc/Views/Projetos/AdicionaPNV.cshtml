@@ -1,0 +1,26 @@
+﻿@model RoadCalc.Models.Entities.Estaca
+<div class="form-horizontal col-lg-12">
+    @using (Html.BeginForm("SalvaPNV", "Projetos", FormMethod.Post))
+    {
+
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.ProjetoId)
+        @Html.HiddenFor(x => x.Numero)
+        @Html.HiddenFor(x => x.Intermediario)
+        @Html.HiddenFor(x => x.CoordenadaId)
+        <p><strong>Cota natural do terreno</strong>: @Model.Coordenada.Z.ToString("F2") metros</p>
+        <div class="form-group">
+            <p class="col-md-3" style="vertical-align: center; margin-top: 5px;margin-bottom: 5px"><strong>Cota Vermelha: </strong></p>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.CotaVermelha, new {@class = "form-control", type = "number", step = 1, min = 0, max = 9000})
+            </div>
+            <div class="col-md-5">
+                <button type="submit" class="btn btn-success form-control">Salvar</button>
+            </div>
+
+        </div>
+
+
+    }
+</div>
+

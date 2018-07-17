@@ -1,0 +1,220 @@
+﻿@model RoadCalc.Models.ViewModels.CanvasViewModel
+
+@{
+    ViewBag.Title = "CanvasTest";
+    int ipontos = 0;
+    int itrechos = 0;
+    int icurvas = 0;
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Canvas</h2>
+
+        <!-- Define the canvas element-->
+        <canvas id="myCanvas" width="1600" height="800" style="background-color: #fff"></canvas>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Pontos</th>
+                    <th>Coordenada X</th>
+                    <th>Coordenada Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ponto in Model.PontoNotavels)
+            {
+                    <tr>
+                        <td>@ponto.Nome</td>
+                        <td>@ponto.CoordX</td>
+                        <td>@ponto.CoordY</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-8">
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Trecho</th>
+                    <th>Estaca Inicial</th>
+                    <th>Estaca Final</th>
+                    <th>Distância</th>
+                    <th>Azimute</th>
+                    <th>Coordenada Inicial X</th>
+                    <th>Coordenada Inicial Y</th>
+                    <th>Coordenada Final X</th>
+                    <th>Coordenada Final Y</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var trecho in @Model.Trechos)
+            {
+                    <tr>
+                        <td>@trecho.Nome</td>
+                        <td>@trecho.EstacaInicial.Numero.ToString("F2") + @trecho.EstacaInicial.Intermediario.ToString("F2") m</td>
+                        <td>@trecho.EstacaFinal.Numero.ToString("F2") + @trecho.EstacaFinal.Intermediario.ToString("F2") m</td>
+                        <td>@trecho.Distancia.ToString("F2") m</td>
+                        <td>@trecho.Azimute.ToString("F2") °</td>
+                        <td>@trecho.PontoInicial.CoordX.ToString("F2") °</td>
+                        <td>@trecho.PontoInicial.CoordY.ToString("F2") °</td>
+                        <td>@trecho.PontoFinal.CoordX.ToString("F2") °</td>
+                        <td>@trecho.PontoFinal.CoordY.ToString("F2") °</td>
+                    </tr>
+                    itrechos++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Curva</th>
+                    <th>Raio</th>
+                    <th>Angulo Central</th>
+                    <th>Desenvolvimento</th>
+                    <th>Tangente Exterior</th>
+                    <th>Deflexão</th>
+                    <th>Estaca de PC X</th>
+                    <th>Estaca de PC Y</th>
+                    <th>Estaca de PT X</th>
+                    <th>Estaca de PT Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var curva in @Model.CurvaHorizontals)
+            {
+                    <tr>
+                        <td>@curva.Nome</td>
+                        <td>@curva.Raio.ToString("F2") m</td>
+                        <td>@curva.AnguloCentral.ToString("F2") °</td>
+                        <td>@curva.Desenvolvimento.ToString("F2") m</td>
+                        <td>@curva.TangenteExterior.ToString("F2") m</td>
+                        <td>@curva.Deflexao.ToString("F2") °</td>
+                        <td>@curva.EstacaPC.Coordenada.X.ToString("F2")</td>
+                        <td>@curva.EstacaPC.Coordenada.Y.ToString("F2")</td>
+                        <td>@curva.EstacaPT.Coordenada.X.ToString("F2")</td>
+                        <td>@curva.EstacaPT.Coordenada.Y.ToString("F2")</td>
+                    </tr>
+                    icurvas++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Ponto</th>
+                    <th>X</th>
+                    <th>Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.PontoNotavels[0].Nome</td>
+                    <td>100</td>
+                    <td>100</td>
+                </tr>
+
+                @foreach (var curva in @Model.CurvaHorizontals)
+            {
+                    <tr>
+                        <td>@curva.Nome - Ponto Inicial</td>
+                        <td>@(((curva.EstacaPC.Coordenada.X - Model.PontoNotavels[0].CoordX) / 13) + 100)</td>
+                        <td>@(((curva.EstacaPC.Coordenada.Y - Model.PontoNotavels[0].CoordY) / 13) + 100)</td>
+                    </tr>
+                    <tr>
+                        <td>@curva.Nome - Ponto Final</td>
+                        <td>@(((curva.EstacaPT.Coordenada.X - Model.PontoNotavels[0].CoordX) / 13) + 100)</td>
+                        <td>@(((curva.EstacaPT.Coordenada.Y - Model.PontoNotavels[0].CoordY) / 13) + 100)</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@section scripts{
+
+    <script>
+        window.onload = function () {
+            //Find the canvas
+            var canvas = document.getElementById("myCanvas");
+            //Access the 2d content
+            var ctx = canvas.getContext('2d');
+            ctx.rotate(1 * Math.PI);
+            ctx.translate(-700, -400);
+            ctx.scale(-1, 1);
+            ctx.moveTo(100, 100);
+
+            @{
+                var pontoAtualX = double.MinValue;
+                var pontoAtualY = double.MinValue;
+                var ApoioDeCurvaX = double.MinValue;
+                var ApoioDeCurvaY = double.MinValue;
+                var scaleFactor = 35;
+                var raio = double.MinValue;
+
+            }
+            //Sem curvas e com pontos notáveis
+            @*@for (var i = 1; i < Model.PontoNotavels.Count; i++)
+            {
+                pontoAtualX = ((Model.PontoNotavels[i].CoordX - Model.PontoNotavels[0].CoordX) / 13);
+                pontoAtualY = ((Model.PontoNotavels[i].CoordY - Model.PontoNotavels[0].CoordY) / 13);
+                @:ctx.lineTo(@pontoAtualX, @pontoAtualY);
+
+            }*@
+            ctx.beginPath();
+            @for (var i = 0; i < 1; i++)
+            {
+
+                raio = 10;
+                //Trecho inicial
+                pontoAtualX = ((Model.CurvaHorizontals[i].EstacaPC.Coordenada.X - Model.PontoNotavels[0].CoordX)/ scaleFactor);
+                pontoAtualY = ((Model.CurvaHorizontals[i].EstacaPC.Coordenada.Y - Model.PontoNotavels[0].CoordY) / scaleFactor);
+                @:ctx.arc(@pontoAtualX, @pontoAtualY, 10, 0, 2 * Math.PI);
+                @:ctx.fill();
+                //@:ctx.lineTo(@pontoAtualX, @pontoAtualY);
+                //Arco
+                pontoAtualX = ((Model.CurvaHorizontals[i].TrechoInicial.EstacaFinal.Coordenada.X - Model.PontoNotavels[0].CoordX) / scaleFactor);
+                pontoAtualY = ((Model.CurvaHorizontals[i].TrechoInicial.EstacaFinal.Coordenada.Y - Model.PontoNotavels[0].CoordY) / scaleFactor);
+                @:ctx.arc(@pontoAtualX, @pontoAtualY, 10, 0, 2 * Math.PI);
+                @:ctx.fill();
+                ApoioDeCurvaX = ((Model.CurvaHorizontals[i].EstacaPT.Coordenada.X - Model.PontoNotavels[0].CoordX) / scaleFactor);
+                ApoioDeCurvaY = ((Model.CurvaHorizontals[i].EstacaPT.Coordenada.Y - Model.PontoNotavels[0].CoordY) / scaleFactor);
+                @:ctx.arc(@ApoioDeCurvaX, @ApoioDeCurvaY, 10, 0, 2 * Math.PI);
+                @:ctx.fill();
+                //@:ctx.arcTo(@pontoAtualX, @pontoAtualY, @ApoioDeCurvaX, @ApoioDeCurvaY, @raio );
+
+            }
+
+            //ctx.stroke();
+
+        }
+    </script>
+
+}
+

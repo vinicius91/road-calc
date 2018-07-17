@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Azimute";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class=""><a href="#CurvaCircular" data-toggle="tab" aria-expanded="true">Concordância Horizontal</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="CurvaCircular">
+                    <p>
+                        <b>Escolha o tipo de unidade</b>
+                    </p>
+                    <div class="box-body">
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Curva Circular", "CurvaCircularCalculo", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "CurvaCircularContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" }
+                                )
+                        </div>
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Curva Espiral", "CurvaEspiral", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "CurvaCircularContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" })
+                        </div>
+                    </div>
+
+                    <div id="CurvaCircularContent"></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

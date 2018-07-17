@@ -1,0 +1,40 @@
+﻿@model RoadCalc.Models.ViewModels.ConvDecToGrauMinSeg
+<hr/>
+<p>
+    <b>Converter Coordenada - Decimal para Grau, Minuto e Segundo</b>
+</p>
+<hr/>
+<!--INICIO DO FORMULÁRIO-->
+@using (Ajax.BeginForm("ConvUnidDec", new AjaxOptions { UpdateTargetId = "ConvUnidDec", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="box-body">
+        <div class="row">
+            <h4>Coordenadas</h4>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordXPt1)
+                @Html.TextBoxFor(x => x.CoordXPt1, new { @class = "form-control", type = "number", step = 0.01 })
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(x => x.CoordYPt1)
+                @Html.TextBoxFor(x => x.CoordYPt1, new { @class = "form-control", type = "number", step = 0.01 })
+            </div>
+        </div>
+        
+        <hr/>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <button type="submit" class="btn btn-primary form-control">Calcular</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+
+}
+<!--TÉRMINO DO FORMULÁRIO-->
+<div class="box-footer">
+    <div id="ConvUnidDec">
+        
+    </div>
+</div>
+

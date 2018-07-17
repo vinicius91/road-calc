@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Coordenadas";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class=""><a href="#distDoisPontos" data-toggle="tab" aria-expanded="true">Distancia entre dois pontos</a></li>
+                <li class=""><a href="#converterUnidade" data-toggle="tab" aria-expanded="false">Conversor de Unidades</a></li>
+                <li class=""><a href="#inclinacao" data-toggle="tab" aria-expanded="false">Inclinação entre dois pontos</a></li>
+
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="distDoisPontos">
+                    <p>
+                        <b>Escolha o tipo de unidade</b>
+                    </p>
+                    <div class="box-body">
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Decimal", "DoisPontosDecimal", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "doisPontosContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" }
+                                )
+                        </div>
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Grau, Minuto e Segundo", "DoisPontosGrau", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "doisPontosContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" })
+                        </div>
+                    </div>
+
+                    <div id="doisPontosContent"></div>
+
+                </div>
+                <div class="tab-pane" id="converterUnidade">
+                    <p>
+                        <b>Escolha o tipo de conversão</b>
+                    </p>
+                    <div class="box-body">
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Decimal para Grau, Minuto e Segundo", "ConverterUnidadeDecToGMS", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "converterUnidadeContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" }
+                                )
+                        </div>
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Grau, Minuto e Segundo para Decimal", "ConverterUnidadeGMSToDec", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "converterUnidadeContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" })
+                        </div>
+                    </div>
+
+                    <div id="converterUnidadeContent"></div>
+
+                </div>
+                <div class="tab-pane" id="inclinacao">
+                    <p>
+                        <b>Escolha o tipo de unidade</b>
+                    </p>
+                    <div class="box-body">
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Decimal", "InclinacaoDecimal", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "inclinacaoContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" }
+                                )
+                        </div>
+                        <div class="col-lg-3">
+                            @Ajax.ActionLink("Grau, Minuto e Segundo", "InclinacaoGrau", new { id = 1 },
+                                new AjaxOptions { UpdateTargetId = "inclinacaoContent", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                                new { @class = "btn btn-default form-control" })
+                        </div>
+                    </div>
+
+                    <div id="inclinacaoContent"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

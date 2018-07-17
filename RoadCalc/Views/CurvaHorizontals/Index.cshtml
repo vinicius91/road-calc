@@ -1,0 +1,159 @@
+﻿@model IEnumerable<RoadCalc.Models.Entities.CurvaHorizontal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Raio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnguloCentral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desenvolvimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Corda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrauDeCurva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deflexao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TangenteExterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transicao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuperElevacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VelDiretriz)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LcMinAbsoluto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LcMinFluenciaOtica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CTaxaMaximaAdmissivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LcMinConforto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LcMaxAnguloCentral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LcMaxTempoPercurso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACEspiral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcComTransicao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Raio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnguloCentral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desenvolvimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Corda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrauDeCurva)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deflexao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TangenteExterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transicao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuperElevacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VelDiretriz)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LcMinAbsoluto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LcMinFluenciaOtica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CTaxaMaximaAdmissivel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LcMinConforto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LcMaxAnguloCentral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LcMaxTempoPercurso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACEspiral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcComTransicao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateIncluded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAltered)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

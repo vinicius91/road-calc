@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RoadCalc.Models.Entities.Coordenada>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Lat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lng)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.X)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Y)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Z)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZoneLetter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lng)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.X)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Y)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Z)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZoneLetter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateIncluded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAltered)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

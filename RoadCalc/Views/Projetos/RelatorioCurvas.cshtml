@@ -1,0 +1,167 @@
+﻿@model RoadCalc.Models.Entities.Projeto
+@{
+    ViewBag.Title = "Relatório de Curvas";
+}
+
+<div class="container" style="width: 100%">
+    @foreach (var curva in Model.Curvas)
+    {
+        <div class="col-md-12 col-lg-6 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Curva @curva.Nome</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Raio</th>
+                                <td>@curva.Raio metros</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo Central</th>
+                                <td>@curva.AnguloCentral.ToString("F3")  radianos</td>
+                            </tr>
+
+                            <tr>
+                                <th>Deflexão</th>
+                                <td>@curva.Deflexao.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Desenvolvimento</th>
+                                <td>@curva.Desenvolvimento.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Tangente Exterior</th>
+                                <td>@curva.TangenteExterior.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Corda</th>
+                                <td>@curva.Corda.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Grau de Curva</th>
+                                <td>@curva.GrauDeCurva.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Superelevação</th>
+                                <td>@((curva.SuperElevacao * 100).ToString("F3"))  %</td>
+                            </tr>
+                            <tr>
+                                <th>Velocidade Diretriz</th>
+                                <td>@curva.VelDiretriz  Km/h</td>
+                            </tr>
+                            <tr>
+                                <th>Azimute da Tangente Inicial</th>
+                                <td>@curva.TrechoInicial.Azimute.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Ponto Inicial da Tangente</th>
+                                <td>@curva.TrechoInicial.EstacaInicial.NomeCompleto() | Northing: @curva.TrechoInicial.EstacaInicial.Coordenada.Y.ToString("F3") | Easting: @curva.TrechoInicial.EstacaInicial.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Ponto Final da Tangente</th>
+                                <td>@curva.TrechoFinal.EstacaFinal.NomeCompleto() | Northing: @curva.TrechoFinal.EstacaFinal.Coordenada.Y.ToString("F3") | Easting: @curva.TrechoFinal.EstacaFinal.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>PI</th>
+                                <td>Northing: @curva.TrechoInicial.PontoFinal.Coordenada.Y.ToString("F3") | Easting: @curva.TrechoInicial.PontoFinal.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Possui transição?</th>
+                                <td>@(curva.Transicao ? "Sim" : "Não")</td>
+                            </tr>
+                            <tr>
+                                <th>Lc Mínimo - Critério do comprimento mínimo absoluto</th>
+                                <td>@curva.LcMinAbsoluto.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Lc Mínimo - Critério da fluência ótica</th>
+                                <td>@curva.LcMinFluenciaOtica.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Lc Mínimo - Critério do conforto</th>
+                                <td>@curva.LcMinConforto.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Lc Máximo - Critério do máximo ângulo central da clotoide</th>
+                                <td>@curva.LcMaxAnguloCentral.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Lc Máximo - Critério do tempo de percurso</th>
+                                <td>@curva.LcMaxTempoPercurso.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Lc</th>
+                                <td>@curva.Lc.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo central da espiral</th>
+                                <td>@curva.ACEspiral.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo central da curva circular</th>
+                                <td>@curva.AcComTransicao.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Coordenada cartesiana da espiral</th>
+                                <td>Xc: @curva.Xc.ToString("F3")  | Yc: @curva.Yc.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Afastamento da curva circular, ou abcissa do PC' ou do PT'</th>
+                                <td>@curva.P.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Ordenada do PC' ou do PT'</th>
+                                <td>@curva.Q.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Desenvolvimento da Curva Circular</th>
+                                <td>@curva.DesenvolvimentoCircular.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Corda do ramo da espiral</th>
+                                <td>@curva.Co.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Corda do ramo da curva circular</th>
+                                <td>@curva.Cc.ToString("F3")  metros</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo entre a tangente externa e a corda da espiral</th>
+                                <td>@curva.Io.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo entre a tangente externa e a corda do ramo da espiral no ponto de transição</th>
+                                <td>@curva.Jo.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Ângulo entre as tangentes à curva circular nos pontos de transição dos ramos da espiral com o trecho circular</th>
+                                <td>@curva.Teta.ToString("F3")  radianos</td>
+                            </tr>
+                            <tr>
+                                <th>Estaca TS</th>
+                                <td>@curva.EstacaTS.NomeCompleto() | Northing: @curva.EstacaTS.Coordenada.Y.ToString("F3") | Easting: @curva.EstacaTS.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Estaca SC</th>
+                                <td>@curva.EstacaSC.NomeCompleto() | Northing: @curva.EstacaSC.Coordenada.Y.ToString("F3") | Easting: @curva.EstacaSC.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Estaca CS</th>
+                                <td>@curva.EstacaCS.NomeCompleto() | Northing: @curva.EstacaCS.Coordenada.Y.ToString("F3") | Easting: @curva.EstacaCS.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                            <tr>
+                                <th>Estaca ST</th>
+                                <td>@curva.EstacaST.NomeCompleto() | Northing: @curva.EstacaST.Coordenada.Y.ToString("F3") | Easting: @curva.EstacaST.Coordenada.X.ToString("F3")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    }
+</div>

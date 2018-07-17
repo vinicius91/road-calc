@@ -1,0 +1,91 @@
+﻿@using RoadCalc.Controllers
+<aside class="main-sidebar">
+    <section class="sidebar">
+        
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu">
+            <li class="header">Menu</li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.Index) ? "active" : "")">
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> <span>Home</span></a>
+            </li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                <a href="@Url.Action("Index", "Projetos")"><i class="fa fa-map-o"></i> <span>Projeto Completo</span></a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calculator"></i> <span>Calculadoras</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                        <a href="@Url.Action("Azimute", "Calculadora")"><i class="fa fa-location-arrow"></i> <span>Azimutes</span></a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                        <a href="@Url.Action("Coordenadas", "Calculadora")"><i class="fa fa-map-marker"></i> <span>Coordenadas</span></a>
+                    </li>
+                    @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-arrows-v"></i> <span>Superelevação</span></a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-arrows-h"></i> <span>Superlargura</span></a>
+                    </li>*@
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                        <a href="@Url.Action("CurvaCircular", "Calculadora")"><i class="fa fa-bullseye"></i> <span>Concordância Horizontal</span></a>
+                    </li>
+                    @*<li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bullseye"></i> <span>Concordância Horizontal</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                                <a href="@Url.Action("Index", "Home")"><i class="fa fa-circle-o-notch"></i> <span>Circular</span></a>
+                            </li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                                <a href="@Url.Action("Index", "Home")"><i class="fa fa-stumbleupon"></i> <span>Espiral</span></a>
+                            </li>
+                        </ul>*@
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bullseye"></i> <span>Concordância Vertical</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                                <a href="@Url.Action("Index", "Home")"><i class="fa fa-circle-o-notch"></i> <span>Circular</span></a>
+                            </li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                                <a href="@Url.Action("Index", "Home")"><i class="fa fa-stumbleupon"></i> <span>Parabola</span></a>
+                            </li>
+                        </ul>
+                    <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-eye"></i> <span>Distâncias de Visibilidade</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                            <a href="@Url.Action("Index", "Home")"><i class="fa fa-stop-circle"></i> <span>Parada</span></a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                            <a href="@Url.Action("Index", "Home")"><i class="fa fa-share-alt"></i> <span>Tomada de Decisão</span></a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.AnotherLink) ? "active" : "")">
+                            <a href="@Url.Action("Index", "Home")"><i class="fa fa-usb"></i> <span>Ultrapassagem</span></a>
+                        </li>
+                    </ul>
+                    
+                </ul>
+            </li>
+        </ul>
+        @* END Menu *@
+    </section>
+</aside>

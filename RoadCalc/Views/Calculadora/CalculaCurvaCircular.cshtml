@@ -1,0 +1,18 @@
+﻿@model RoadCalc.Models.Entities.CurvaHorizontal
+
+
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-check"></i> Resultado</h4>
+    <ul>
+        <li>Raio: @Model.Raio</li>
+        <li>Ângulo Central: @Model.AnguloCentral</li>
+        <li>Desenvolvimento: @Model.Desenvolvimento</li>
+        <li>Corda: @Model.Corda</li>
+        <li>Grau de Curva: @Model.GrauDeCurva</li>
+        <li>Deflexão: @Model.Deflexao</li>
+        <li>Tangente Exterior: @Model.TangenteExterior</li>
+        <li>Estaca de PC: @Model.EstacaPC.Numero + @Model.EstacaPC.Intermediario metros</li>
+        <li>Estaca de PT: @Model.EstacaPT.Numero + @Model.EstacaPT.Intermediario metros</li>
+    </ul>
+</div>

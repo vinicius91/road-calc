@@ -1,0 +1,90 @@
+﻿@model RoadCalc.Models.Entities.Coordenada
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coordenada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.X)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.X)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Y)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Y)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Z)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Z)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZoneLetter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZoneLetter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateIncluded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAltered)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

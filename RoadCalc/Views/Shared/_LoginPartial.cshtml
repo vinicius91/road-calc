@@ -1,0 +1,59 @@
+﻿@using System.Web.UI.WebControls
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+    var nomeClaim = claimsIdentity.FindFirst(c => c.Type == "Nome").Value;
+    var sobrenomeClaim = claimsIdentity.FindFirst(c => c.Type == "Sobrenome").Value;
+    var instituicaoDeEnsino = claimsIdentity.FindFirst(c => c.Type == "InstituicaoDeEnsino").Value;
+
+    <li class="dropdown user user-menu margin-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+            <span class="hidden-xs">@nomeClaim @sobrenomeClaim</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="user-header">
+
+
+                <p>
+                    @nomeClaim @sobrenomeClaim
+                    <small>@instituicaoDeEnsino</small>
+                </p>
+            </li>
+
+            <li class="user-footer no-padding">
+                <div class="col-xs-3 pull-left no-padding center-block margin-small">
+                    <a href="@Url.Action("Index", "Manage")" class="btn btn-default btn-flat form-control text-center">Perfil</a>
+                </div>
+                <div class="col-xs-5 pad-small inner-element-center">
+                    <a href="#" class="btn btn-default btn-flat form-control text-center">Meus Projetos</a>
+                </div>
+
+                <div class="col-xs-3 no-padding pull-right center-block margin-small">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat form-control text-center">Log off</a>
+                    }
+                </div>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li class="user user-menu margin-right">
+        <a href="@Url.Action("Login", "Account")">
+
+            <span class="hidden-xs">Login</span>
+        </a>
+    </li>
+
+    <li class="user user-menu margin-right">
+        <a href="@Url.Action("Register", "Account")">
+
+            <span class="hidden-xs">Registrar</span>
+        </a>
+    </li>
+}

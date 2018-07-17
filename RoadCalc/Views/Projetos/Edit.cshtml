@@ -1,0 +1,404 @@
+﻿@model RoadCalc.Models.ViewModels.EditProjetoViewModel
+
+@{
+    ViewBag.Title = "Editar Projeto: " + Model.Nome;
+}
+<div class="row">
+    <div class="col-lg-9">
+        <div class="box box-default">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="box-header with-border">
+                    <h3 class="box-title">Opções Gerais</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <div class="box-body">
+                    <div class="form-horizontal col-lg-10">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClasseDeProjetoId, "Classe de Projeto", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("ClasseDeProjetoId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClasseDeProjetoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PontoInicialId, "Ponto Inicial", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("PontoInicialId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PontoInicialId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PontoFinalId, "Ponto Final", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("PontoFinalId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PontoFinalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CoordenadasReaisBool, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.CoordenadasReaisBool, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="form-group">
+                        <div class="col-lg-pull-2 col-lg-2 pull-right">
+                            <input type="submit" value="Salvar" class="btn btn-success form-control" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-fw fa-gears"></i> Painel de Controle</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body text-center" style="align-content: center">
+                @if (Model.NumeroDeTrechos < 1 && Model.NumeroDeInicializadoresDeCurvas < 1 && Model.NumeroDeCurvas < 1)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Adicionar Ponto", "AdicionaPonto", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                }
+                @if (Model.NumeroDePontos > 2 && Model.NumeroDeCurvas < 1 && Model.NumeroDeInicializadoresDeCurvas < 1 && Model.NumeroDeTrechos < 1)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Adicionar trechos", "AdicionaTrechos", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                }
+                @if (Model.NumeroDeTrechos > 1 && Model.NumeroDeCurvas < 1 && Model.NumeroDeInicializadoresDeCurvas == 0)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Gerar Curvas", "PreparaCurvas", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                }
+                @if (Model.NumeroDeInicializadoresDeCurvas > 0)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Adicionar Curvas", "AdicionaCurva", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnComplete = "UpdateSize" },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                }
+
+                @if (Model.NumeroDeInicializadoresDeCurvas < 1 && Model.NumeroDeCurvas > 0)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Limpar Projeto", "ConfirmaLimpeza", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                    if (Model.EstacasGeradas == false)
+                     {
+                         <div class="row col-lg-12">
+                             <button class="btn btn-app form-control" onclick="GeraEstacas();">Gera estacas</button>
+                         </div>
+                     }
+                    <div class="row col-lg-12">
+                        <a class="btn btn-app form-control" href="@Url.Action("RelatorioCurvas", "Projetos", new {id = Model.Id})">
+                            Gerar Relatório de Curvas
+                        </a>
+                    </div>
+                }
+                @if (Model.EstacasGeradas == true)
+                {
+                    <div class="row col-lg-12">
+                        @Ajax.ActionLink(@"Adicionar Ponto Notável Vertical", "SelecionaEstacaPNV", new { id = @Model.Id },
+                            new AjaxOptions { UpdateTargetId = "modal-default", HttpMethod = "POST", InsertionMode = InsertionMode.Replace },
+                            new { @class = "btn btn-app form-control", data_toggle = "modal", data_target = "#modal-default" }
+                            )
+                    </div>
+                    <div class="row col-lg-12">
+                        <button class="btn btn-app form-control" onclick="GeraCurvasVerticais();">Gera Curvas Verticais</button>
+                    </div>
+                    //Criar novas validacoes
+                    <div class="row col-lg-12">
+                        <a class="btn btn-app form-control" onclick="CriaRelatorio()" href="@Url.Action("Relatorio", "Projetos", new {id = Model.Id})">
+                            Relatório Completo
+                        </a>
+                    </div>
+                }
+                
+
+            </div>
+            <div class="overlay" id="loading" style="display: none">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <div id="estacasGeradas" class="modal modal-success fade in" role="dialog" >
+                <div class="modal-dialog" >
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="pull-right"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-fw fa-close"></i></button></span>
+                            <h4 style="margin: 7.5px">Estacas geradas com sucesso.</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="response"></p>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+</div>
+
+
+<div class="box box-default collapsed-box col-lg-12" id="PontosAtuais">
+    <div class="box-header with-border">
+        <h3 class="box-title">Pontos Notáveis do Projeto</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body" style="display: none;">
+        @if (Model.NumeroDePontos > 0)
+            {
+                foreach (var ponto in Model.PontoNotaveis)
+                {
+
+                <div class="col-md-2">
+                    <div class="box box-default collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@ponto.Nome</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" style="display: none;">
+                            <p>Easting(UTM): @ponto.Coordenada.X.ToString("F2") </p>
+                            <p>Northing(UTM): @ponto.Coordenada.Y.ToString("F2") </p>
+                            <p>Cota: @ponto.Coordenada.Z.ToString("F2") </p>
+                            <p>Letra de Zona: @ponto.Coordenada.ZoneLetter</p>
+                            <p>Número de Zona: @ponto.Coordenada.ZoneNumber</p>
+                            <p>Latitude: @ponto.Coordenada.Lat.ToString("F6") </p>
+                            <p>Longitude: @ponto.Coordenada.Lng.ToString("F6") </p>
+                            <p>
+                                <a class="btn btn-app" href="@Url.Action("Edit", "Pontos", new {id = ponto.Id})">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                                <a class="btn btn-app" href="@Url.Action("Delete", "Pontos", new {id = ponto.Id})">
+                                    <i class="fa fa-trash"></i> Deletar
+                                </a>
+                            </p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nenhum ponto notável adicionado ao projeto</p>
+        }
+    </div>
+</div>
+<div class="box box-default collapsed-box col-lg-12" id="TrechosAtuais">
+    <div class="box-header with-border">
+        <h3 class="box-title">Trechos do Projeto</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body" style="display: none;">
+        @if (Model.NumeroDeTrechos > 0)
+            {
+                foreach (var trecho in Model.Trechos)
+                {
+
+                <div class="col-md-3">
+                    <div class="box box-default collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@trecho.Nome</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" style="display: none;">
+                            <p>Ponto Inicial: @trecho.PontoInicial.Nome </p>
+                            <p>Ponto Final: @trecho.PontoFinal.Nome </p>
+                            <p>Estaca Inicial: @trecho.EstacaInicial.NomeCompleto() </p>
+                            <p>Estaca Final: @trecho.EstacaFinal.NomeCompleto() </p>
+                            <p>Azimute: @trecho.Azimute.ToString("F2") ° </p>
+                            <p>Inclinação: @((trecho.Inclinacao * 100).ToString("F2")) % </p>
+
+                            <p>
+                                <a class="btn btn-app" href="@Url.Action("Edit", "Trechos", new {id = trecho.Id})">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                                <a class="btn btn-app" href="@Url.Action("Delete", "Trechos", new {id = trecho.Id})">
+                                    <i class="fa fa-trash"></i> Deletar
+                                </a>
+                            </p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nenhum trecho adicionado ao projeto</p>
+        }
+    </div>
+</div>
+
+<div id="CurvasAtuais" class="box box-default collapsed-box col-lg-12">
+    <div class="box-header with-border">
+        <h3 class="box-title">Curvas do Projeto</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body" style="display: none;">
+        @if (Model.NumeroDeCurvas > 0)
+            {
+                foreach (var curva in @Model.Curvas)
+                {
+                <div class="col-md-3">
+                    <div class="box box-default collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@curva.Nome</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" style="display: none;">
+                            <p>Raio: @curva.Raio.ToString("F0") metros </p>
+                            <p>Ângulo Central: @curva.AnguloCentral ° </p>
+                            <p>Desenvolvimento: @curva.Desenvolvimento.ToString("F2") metros </p>
+                            <p>Tangente Exterior: @curva.TangenteExterior.ToString("F2") metros  </p>
+                            <p>Deflexão: @curva.Deflexao.ToString("F2") ° </p>
+                            <p>Estaca PC: @curva.EstacaPC.NomeCompleto()</p>
+                            <p>Estaca PT: @curva.EstacaPT.NomeCompleto()</p>
+                            <p>
+                                <a class="btn btn-app" href="@Url.Action("Edit", "CurvaHorizontals", new {id = curva.Id})">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                                <a class="btn btn-app" href="@Url.Action("Delete", "CurvaHorizontals", new {id = curva.Id})">
+                                    <i class="fa fa-trash"></i> Deletar
+                                </a>
+                            </p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nenhuma curva adicionada ao projeto</p>
+        }
+    </div>
+</div>
+
+<div class="row col-lg-12">
+    <div class="modal fade" id="modal-default" style="display: none;">
+    </div>
+
+</div>
+<div class="row col-lg-12">
+    <span class="pull-right">
+        <a class="btn btn-app" href="@Url.Action("Index")">
+            <i class="fa fa-arrow-left" style="margin-bottom: 4px"></i> <p>Voltar</p>
+        </a>
+    </span>
+</div>
+
+@section scripts{
+    <script type="text/javascript" language="javascript">
+        function GeraEstacas() {
+            var url = '@Url.Action("GeraEstacas", new {id = Model.Id})';
+            $("#loading").show();
+            $.post(url, @Model.Id,
+                function (data) {
+                    $("#loading").hide();
+                    $('#response')[0].innerHTML = data;
+                    $("#estacasGeradas").modal("show");
+                });
+        }
+
+        function GeraCurvasVerticais() {
+            var url = '@Url.Action("GeraCurvasVerticais", new {id = Model.Id})';
+            $("#loading").show();
+            $.post(url, @Model.Id,
+                function (data) {
+                    $("#loading").hide();
+                });
+        }
+
+        function CriaRelatorio() {
+            var url = '@Url.Action("Relatorio", "Projetos", new {id = Model.Id})';
+            $("#loading").show();
+
+        }
+        function closeModal() {
+            $("#estacasGeradas").hide();
+        }
+
+        function UpdateSize()
+        {
+            $('#myModmodal-defaultal').data('bs.modal').handleUpdate()
+        }
+    </script>
+}
+
+
+

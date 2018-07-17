@@ -1,0 +1,22 @@
+﻿@model ICollection<RoadCalc.Models.Entities.GrauMinSeg>
+    
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-check"></i>Eixo X:</h4>
+    <ul>
+
+        <li>@Model.FirstOrDefault().Grau º</li>
+        <li>@Model.FirstOrDefault().Minuto '</li>
+        <li>@Model.FirstOrDefault().Segundo ''</li>
+    </ul>
+</div>
+
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-check"></i>Eixo Y:</h4>
+    <ul>
+        <li>@Model.Last().Grau º</li>
+        <li>@Model.Last().Minuto '</li>
+        <li>@Model.Last().Segundo ''</li>
+    </ul>
+</div>

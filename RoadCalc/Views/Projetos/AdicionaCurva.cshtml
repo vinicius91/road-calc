@@ -1,0 +1,51 @@
+﻿@model RoadCalc.Models.Entities.InicializadorDeCurva
+
+
+<div class="modal-dialog">
+    @using (Html.BeginForm("SalvaCurva", "Projetos", FormMethod.Post))
+    {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Adicionar Curva</h4>
+                <hr/>
+                <p><strong>Informações sobre a curva:</strong></p>
+                <p>Raio mínimo para superelevação máxima: @Model.Projeto.ClasseDeProjeto.RaioMinSupEleMax metros</p>
+                <p>Superelevação máxima: @Model.Projeto.ClasseDeProjeto.SupEleMax %</p>
+                <p>Velocidade Diretriz: @Model.Projeto.ClasseDeProjeto.VelDirMin.ToString("F2") Km/h</p>
+                <p>Trecho Inicial: @Model.TrechoInicial.Nome</p>
+                <p>Trecho Final: @Model.TrechoFinal.Nome</p>
+            </div>
+            <div class="modal-body">
+                <div class="row form-horizontal" style="margin-left: 10px">
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.HiddenFor(x => x.Nome)
+                    @Html.HiddenFor(x => x.ProjetoId)
+                    @Html.HiddenFor(x => x.TrechoInicialId)
+                    @Html.HiddenFor(x => x.TrechoFinalId)
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(x => x.Nome):
+                        @Html.DisplayFor(x => x.TrechoInicial.PontoFinal.Nome, new {@class = "form-control", type = "text"})
+                    </div>
+                    <div class="form-group col-lg-12 row">
+                        @Html.LabelFor(x => x.Raio)
+                        @Html.TextBoxFor(x => x.Raio, new {@class = "form-control", type = "number", step = 1, min = Model.Projeto.ClasseDeProjeto.RaioMinSupEleMax, max = Model.TrechoFinal.Distancia * 2})
+                    </div>
+                    <div class="form-group col-lg-12 row">
+                        @Html.LabelFor(x => x.Lc)
+                        @Html.TextBoxFor(x => x.Lc, new {@class = "form-control", type = "number", step = 1})
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    }
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+

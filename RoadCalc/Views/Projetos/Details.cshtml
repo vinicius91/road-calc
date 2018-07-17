@@ -1,0 +1,58 @@
+﻿@model RoadCalc.Models.Entities.Projeto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Projeto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClasseDeProjeto.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClasseDeProjeto.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateIncluded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAltered)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

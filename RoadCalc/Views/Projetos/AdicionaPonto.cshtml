@@ -1,0 +1,52 @@
+﻿@model RoadCalc.Models.ViewModels.PontoNotavelViewModel
+
+
+    <div class="modal-dialog">
+    @using (Html.BeginForm("SalvaPonto", "Projetos", FormMethod.Post))
+    {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Adicionar Ponto</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-horizontal" style="margin-left: 10px">
+                    @Html.HiddenFor(x => x.ProjetoId)
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(x => x.Nome)
+                        @Html.TextBoxFor(x => x.Nome, new {@class = "form-control", type = "text"})
+                    </div>
+                    <div class="form-group col-lg-12 row">
+                        @Html.LabelFor(x => x.CoordX)
+                        @Html.TextBoxFor(x => x.CoordX, new {@class = "form-control", type = "number", step = 0.01})
+                    </div>
+                    <div class="form-group col-lg-12 row">
+                        @Html.LabelFor(x => x.CoordY)
+                        @Html.TextBoxFor(x => x.CoordY, new {@class = "form-control", type = "number", step = 0.01})
+                    </div>
+                    <div class="form-group col-lg-12 row">
+                        @Html.LabelFor(x => x.Cota)
+                        @Html.TextBoxFor(x => x.Cota, new {@class = "form-control", type = "number", step = 0.01})
+                    </div>
+                    
+                        <div class="form-group col-lg-12 row">
+                            @Html.LabelFor(x => x.ZoneLetter)
+                            @Html.TextBoxFor(x => x.ZoneLetter, new { @class = "form-control", type = "text"})
+                        </div>
+                        <div class="form-group col-lg-12 row">
+                            @Html.LabelFor(x => x.ZoneNumber)
+                            @Html.TextBoxFor(x => x.ZoneNumber, new { @class = "form-control", type = "number", step = 1 })
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    }
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->

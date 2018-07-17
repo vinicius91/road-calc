@@ -1,0 +1,29 @@
+﻿<header class="main-header">
+    @* BEGIN Logo *@
+    <a href="@Url.Action("Index", "Home")" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>E</b>C</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Estradas</b>Calc</span>
+    </a>
+    @* END Logo *@
+    @* BEGIN Header *@
+    <nav class="navbar navbar-static-top" role="navigation">
+       
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+               @Html.Partial("_LoginPartial")
+                @* BEGIN User Account Menu *@
+                
+                @* END User Account Menu *@
+                @* BEGIN Control Sidebar Toggle Button *@
+                <li>
+                    <p class="pad">
+                        &nbsp;
+                    </p>
+                </li>
+                @* END Control Sidebar Toggle Button *@
+            </ul>
+        </div>
+    </nav>
+</header>

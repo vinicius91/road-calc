@@ -1,0 +1,14 @@
+﻿@model RoadCalc.Models.ViewModels.PontoNotavelViewModel
+
+<div class="box-body" style="display: none;">
+    <p>@Model.Nome </p>
+    <p>X: @Model.CoordX.ToString("2D") | Y: @Model.CoordY.ToString("2D") |Cota: @Model.Cota.ToString("2D") metros</p>
+    <p>
+        <a class="btn btn-app" href="@Url.Action("EditarPonto", "Projetos", new {id = Model.Id})">
+            <i class="fa fa-edit"></i> Editar
+        </a>
+        <a class="btn btn-app" href="@Url.Action("DeletarPonto", "Projetos", new {id = Model.Id})">
+            <i class="fa fa-trash"></i> Deletar
+        </a>
+    </p>
+</div>

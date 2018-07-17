@@ -1,0 +1,194 @@
+﻿@model RoadCalc.Models.Entities.CurvaHorizontal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CurvaHorizontal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnguloCentral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnguloCentral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desenvolvimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desenvolvimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Corda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Corda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrauDeCurva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrauDeCurva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deflexao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deflexao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TangenteExterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TangenteExterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transicao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transicao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuperElevacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuperElevacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VelDiretriz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VelDiretriz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LcMinAbsoluto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LcMinAbsoluto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LcMinFluenciaOtica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LcMinFluenciaOtica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CTaxaMaximaAdmissivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTaxaMaximaAdmissivel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LcMinConforto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LcMinConforto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LcMaxAnguloCentral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LcMaxAnguloCentral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LcMaxTempoPercurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LcMaxTempoPercurso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACEspiral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACEspiral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcComTransicao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcComTransicao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateIncluded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAltered)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

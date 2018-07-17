@@ -1,0 +1,74 @@
+﻿@model RoadCalc.Models.Entities.Trecho
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trecho</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Projeto.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projeto.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distancia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inclinacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inclinacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Azimute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Azimute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIncluded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateIncluded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAltered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAltered)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

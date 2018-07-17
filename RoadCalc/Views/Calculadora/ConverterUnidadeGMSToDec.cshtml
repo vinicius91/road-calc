@@ -1,0 +1,61 @@
+﻿@model RoadCalc.Models.ViewModels.ConvGrauMinSegDec
+<hr />
+<p>
+    <b>Converter Coordenada - Decimal para Grau, Minuto e Segundo</b>
+</p>
+<hr />
+<!--INICIO DO FORMULÁRIO-->
+@using (Ajax.BeginForm("ConvUnidGrau", new AjaxOptions { UpdateTargetId = "ConvUnidGrau", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <h5>Eixo X</h5>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordXGraus)
+                    @Html.TextBoxFor(x => x.CoordXGraus, new { @class = "form-control", type = "number", step = 1 })
+                </div>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordXMin)
+                    @Html.TextBoxFor(x => x.CoordXMin, new { @class = "form-control", type = "number", step = 1 })
+                </div>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordXSeg)
+                    @Html.TextBoxFor(x => x.CoordXSeg, new { @class = "form-control", type = "number", step = 0.01 })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h5>Eixo Y</h5>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordYGraus)
+                    @Html.TextBoxFor(x => x.CoordYGraus, new { @class = "form-control", type = "number", step = 1 })
+                </div>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordYMin)
+                    @Html.TextBoxFor(x => x.CoordYMin, new { @class = "form-control", type = "number", step = 1 })
+                </div>
+                <div class="form-group col-lg-2">
+                    @Html.LabelFor(x => x.CoordYSeg)
+                    @Html.TextBoxFor(x => x.CoordYSeg, new { @class = "form-control", type = "number", step = 0.01 })
+                </div>
+            </div>
+        </div>
+        <hr />
+        <hr />
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <button type="submit" class="btn btn-primary form-control">Calcular</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+
+}
+<!--TÉRMINO DO FORMULÁRIO-->
+<div class="box-footer">
+    <div id="ConvUnidGrau">
+
+    </div>
+</div>
+

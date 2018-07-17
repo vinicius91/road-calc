@@ -1,0 +1,28 @@
+﻿@model RoadCalc.Models.ViewModels.Identity.IndexViewModel
+@{
+    ViewBag.Title = "Perfil";
+}
+
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Altere as configurações de sua conta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Senha:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Alterar a senha", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        
+    </dl>
+</div>
